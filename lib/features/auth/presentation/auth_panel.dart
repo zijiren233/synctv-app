@@ -9,6 +9,7 @@ import 'package:synctv_app/core/platform/device_display_name_service.dart';
 import 'package:synctv_app/features/auth/application/auth_gateway.dart';
 import 'package:synctv_app/features/auth/application/passkey_client.dart';
 import 'package:synctv_app/features/auth/application/oauth2_callback_client.dart';
+import 'package:synctv_app/core/config/distribution_profile.dart';
 import 'package:synctv_app/features/auth/application/opaque_authenticator.dart';
 import 'package:synctv_app/core/presentation/notifications/app_notifications.dart';
 import 'package:synctv_app/core/presentation/widgets/app_form_controls.dart';
@@ -161,7 +162,11 @@ class _AuthPanelState extends State<AuthPanel> with TickerProviderStateMixin {
 
   void _loadOptions() {
     unawaited(_loadPublicSettings());
-    unawaited(_loadOAuth2Providers());
+    if (ProviderDistributionPolicy.current.allowsOAuth2) {
+      unawaited(_loadOAuth2Providers());
+    } else {
+      _loadingOAuth2Providers = false;
+    }
     unawaited(_loadSuggestedPasskeyName());
   }
 
