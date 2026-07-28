@@ -1851,8 +1851,11 @@ class _AuthPanelState extends State<AuthPanel> with TickerProviderStateMixin {
   }
 
   String _oauth2ProviderLabel(OAuth2ProviderOption provider) {
-    final display = provider.type.trim().isEmpty
-        ? provider.name
+    final providerName = provider.name.trim();
+    final display = providerName.toLowerCase() == 'apple'
+        ? 'Apple'
+        : provider.type.trim().isEmpty
+        ? providerName
         : provider.type;
     if (provider.signupNeedReview) {
       return context.l10n.providerReviewRequired(display);
