@@ -75,6 +75,8 @@
 	<string>SyncTV uses the camera for video calls in rooms.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>SyncTV uses your photo library to select images for profiles, rooms, and chat messages.</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>NSLocalNetworkUsageDescription</key>
 	<string>SyncTV uses the local network for media peer-to-peer connections.</string>
 	<key>NSAppTransportSecurity</key>
